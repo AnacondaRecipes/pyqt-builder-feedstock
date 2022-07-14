@@ -14,7 +14,6 @@ source:
     - patches/0003-find-sip-distinfo.patch
 
 build:
-  noarch: python
   number: 1
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
@@ -22,13 +21,14 @@ build:
     - pyqt-qt-wheel = pyqtbuild.bundle.qt_wheel_main:main
 
 requirements:
+    - python
   host:
-    - python >=3.6
+    - python
     - setuptools
     - wheel
     - pip
   run:
-    - python >=3.6
+    - python
     - sip
     - packaging
     - toml
