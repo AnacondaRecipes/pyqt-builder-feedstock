@@ -21,7 +21,10 @@ build:
     - pyqt-qt-wheel = pyqtbuild.bundle.qt_wheel_main:main
 
 requirements:
+  build:
     - python
+    - patch     # [not win]
+    - m2-patch  # [win]
   host:
     - python
     - setuptools
