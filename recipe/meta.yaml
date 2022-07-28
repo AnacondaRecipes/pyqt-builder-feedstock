@@ -14,21 +14,26 @@ source:
     - patches/0003-find-sip-distinfo.patch
 
 build:
-  noarch: python
   number: 1
   script: {{ PYTHON }} -m pip install . -vv
   entry_points:
     - pyqt-bundle = pyqtbuild.bundle.bundle_main:main
     - pyqt-qt-wheel = pyqtbuild.bundle.qt_wheel_main:main
+  missing_dso_whitelist:  # [win]
+    - $RPATH/libcrypto-1_1.dll  # [win]
 
 requirements:
+  build:
+    - python
+    - patch     # [not win]
+    - m2-patch  # [win]
   host:
-    - python >=3.6
+    - python
     - setuptools
     - wheel
     - pip
   run:
-    - python >=3.6
+    - python
     - sip
     - packaging
     - toml
