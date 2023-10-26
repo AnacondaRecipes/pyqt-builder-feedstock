@@ -20,7 +20,7 @@ build:
     - pyqt-bundle = pyqtbuild.bundle.bundle_main:main
     - pyqt-qt-wheel = pyqtbuild.bundle.qt_wheel_main:main
   missing_dso_whitelist:  # [win]
-    - $RPATH/libcrypto-1_1.dll  # [win]
+    - $RPATH/libcrypto-1_1-x64.dll  # [win]
 
 requirements:
   build:
