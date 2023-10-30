@@ -1,26 +1,27 @@
 {% set name = "PyQt-builder" %}
-{% set version = "1.13.0" %}
+{% set version = "1.15.3" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 4877580c38ceb5320e129b381d083b0a8601c68166d8b99707f08fa0a1689eef
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/PyQt-builder-{{ version }}.tar.gz
+  sha256: 5b33e99edcb77d4a63a38605f4457a04cff4e254c771ed529ebc9589906ccdb1
   patches:
     - patches/0001-Use-conda-sysroot-when-building-recipes.patch
     - patches/0002-disable-test-execution-cross.patch
     - patches/0003-find-sip-distinfo.patch
 
 build:
-  number: 1
-  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
     - pyqt-bundle = pyqtbuild.bundle.bundle_main:main
     - pyqt-qt-wheel = pyqtbuild.bundle.qt_wheel_main:main
   missing_dso_whitelist:  # [win]
     - $RPATH/libcrypto-1_1.dll  # [win]
+    - $RPATH/libcrypto-1_1-x64.dll  # [win]
 
 requirements:
   build:
@@ -34,9 +35,8 @@ requirements:
     - pip
   run:
     - python
-    - sip
+    - sip >=6.7,<7
     - packaging
-    - toml
 
 test:
   imports:
@@ -48,14 +48,19 @@ test:
 
 about:
   home: https://www.riverbankcomputing.com/software/pyqt/
-  license: GPL-3.0-only
+  license: LicenseRef-SIP_License OR GPL-2.0-or-later OR GPL-3.0-or-later
   license_family: GPL
-  license_file: LICENSE-GPL3
+  license_file: 
+    - LICENSE
+    - LICENSE-GPL2
+    - LICENSE-GPL3
   summary: The PEP 517 compliant PyQt build system
   description: |
     PyQt-builder is the PEP 517 compliant build system for PyQt and projects
     that extend PyQt. It extends the sip build system and uses Qt’s qmake to
     perform the actual compilation and installation of extension modules.
+  doc_url: https://www.riverbankcomputing.com/software/pyqt/
+  dev_url: https://www.riverbankcomputing.com/software/pyqt/
 
 extra:
   recipe-maintainers:
