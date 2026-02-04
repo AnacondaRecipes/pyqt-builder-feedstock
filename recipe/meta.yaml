@@ -1,13 +1,13 @@
 {% set name = "PyQt-builder" %}
-{% set version = "1.18.2" %}
+{% set version = "1.19.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pyqt_builder-{{ version }}.tar.gz
-  sha256: 56dfea461484a87a8f0c8b0229190defc436d7ec5de71102e20b35e5639180bc
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}|lower }}-{{ version }}.tar.gz
+  sha256: 6af6646ba29668751b039bfdced51642cb510e300796b58a4d68b7f956a024d8
   patches:
     - patches/0001-Use-conda-sysroot-when-building-recipes.patch
     - patches/0002-disable-test-execution-cross.patch
@@ -15,7 +15,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [py<38]
+  skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
     - pyqt-bundle = pyqtbuild.bundle.bundle_main:main
@@ -47,7 +47,7 @@ test:
     - pip check
 
 about:
-  home: https://www.riverbankcomputing.com/software/pyqt/
+  home: https://www.riverbankcomputing.com/software/pyqt
   license: LicenseRef-SIP_License OR BSD-2
   license_family: BSD
   license_file: LICENSE
@@ -57,7 +57,7 @@ about:
     that extend PyQt. It extends the sip build system and uses Qt’s qmake to
     perform the actual compilation and installation of extension modules.
   doc_url: https://PyQt-builder.readthedocs.io
-  dev_url: https://www.riverbankcomputing.com/software/pyqt/
+  dev_url: https://www.riverbankcomputing.com/software/pyqt
 
 extra:
   recipe-maintainers:
