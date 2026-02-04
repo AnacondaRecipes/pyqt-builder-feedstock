@@ -23,6 +23,9 @@ build:
   missing_dso_whitelist:            # [win]
     - $RPATH/libcrypto-1_1.dll      # [win]
     - $RPATH/libcrypto-1_1-x64.dll  # [win]
+    - $RPATH/api-ms-win-core-winrt-string-l1-1-0.dll  # [win]
+    - $RPATH/api-ms-win-core-winrt-error-l1-1-0.dll  # [win]
+    - $RPATH/api-ms-win-core-winrt-l1-1-0.dll  # [win]
 
 requirements:
   build:
