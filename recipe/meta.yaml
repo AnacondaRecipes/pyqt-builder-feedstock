@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}|lower }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')|lower }}-{{ version }}.tar.gz
   sha256: 6af6646ba29668751b039bfdced51642cb510e300796b58a4d68b7f956a024d8
   patches:
     - patches/0001-Use-conda-sysroot-when-building-recipes.patch
