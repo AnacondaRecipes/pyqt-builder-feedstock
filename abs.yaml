@@ -1,5 +1,5 @@
+channels:
+  - https://staging.continuum.io/pbp/fs/sip-feedstock/pr11/28b9f4b
+
 build_env_vars:
   ANACONDA_ROCKET_ENABLE_PY314 : yes
-
-channels:
-  - https://github.com/AnacondaRecipes/pyqt-builder-feedstock/pull/4
